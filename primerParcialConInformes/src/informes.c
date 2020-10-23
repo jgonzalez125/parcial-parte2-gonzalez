@@ -5,6 +5,7 @@
  *      Author: juang
  */
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include "utn.h"
 #include "electrodomesticos.h"
@@ -82,6 +83,7 @@ int info_calcularImporteTotal(Reparacion* arrayReparaciones, int longitudReparac
 		for(int i = 0; i < longitudReparaciones; i++){
 			if(arrayReparaciones[i].isEmpty) continue;
 			auxIndiceServicio = serv_buscarId(arrayServicios, longitudServicios, arrayReparaciones[i].idServicio);
+			if(auxIndiceServicio >= 0 && !strncmp(arrayServicios[auxIndiceServicio].descripcion, "Mantenimiento", DESCRIPCION_LEN))
 			acumuladorImportes = acumuladorImportes + arrayServicios[auxIndiceServicio].precio;
 		}
 	}
